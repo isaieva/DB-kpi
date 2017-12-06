@@ -1,0 +1,54 @@
+{% extends 'hotels/structure.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+      {% csrf_token %}
+        <label>
+            Name
+            <input type="text" value="{{ hotel.name }}" name="name">
+        </label>
+
+        <label>
+            Brief description
+            <input type="text" value="{{ hotel.brief_description }}" name="brief">
+        </label>
+
+
+        <label>
+            Description
+            <input type="text" value="{{ hotel.description }}" name="description">
+        </label>
+
+        <label>
+            Country
+            <select name="country">
+                {% for country in countries %}
+                    {% if country.name == hotel.country_id %}
+                        <option selected="selected" >{{ country.name }}</option>
+                    {% else %}
+                        <option>{{ country.name }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </label>
+
+      <ul>
+          {% for feature in features %}
+              <li><label>
+                  {{ feature.name }}
+                  {% if feature.active == 0 %}
+                      <input type="checkbox" name="features" value="{{ feature.name }}">
+                  {% else %}
+                      <input checked="checked" type="checkbox" name="features" value="{{ feature.name }}">
+                  {% endif %}
+              </label></li>
+          {% endfor %}
+      </ul>
+
+        <input type="submit" value="Submit!"/>
+    </form>
+{% endblock %}

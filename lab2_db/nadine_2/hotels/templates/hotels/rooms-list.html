@@ -1,0 +1,39 @@
+{% extends 'hotels/structure.html' %}
+
+{% block title %}
+    «{{ hotel.name }}» rooms
+{% endblock %}
+
+{% block content %}
+    <table class="room-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Daily ratio</th>
+            <th>Edit</th>
+            <th>Buy</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for room in rooms %}
+            <tr>
+            <th>{{ room.id }}</th>
+            <th>{{ room.description }}</th>
+            <th>{{ room.daily_ratio }}</th>
+            <th>
+                <a href="{% url "hotels:countries" %}">Edit</a>
+            </th>
+            <th>
+                {% if room.is_free %}
+                    <a href="{% url 'hotels:countries' %}">Buy</a>
+                {% else %}
+                    This room is not free
+                {% endif %}
+            </th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url "hotels:countries" %}">Add room</a>
+{% endblock %}

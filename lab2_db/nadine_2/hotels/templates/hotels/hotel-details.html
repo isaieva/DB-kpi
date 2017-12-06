@@ -1,0 +1,58 @@
+{% extends 'hotels/structure.html' %}
+
+{% block title %}
+    {{ hotel.name }}
+{% endblock %}
+
+{% block content %}
+    <div>
+        <a href="{% url 'hotels:country-details' hotel.country_id %}">
+            Go back to all hotels from {{ hotel.country_id }}
+        </a>
+        <br>
+        <a href="{% url 'hotels:hotel-edit' hotel_id=hotel.id  %}">Edit</a>
+        <a href="{% url 'hotels:hotel-delete' hotel_id=hotel.id  %}">Delete</a>
+    </div>
+
+    <div class="hotel-container">
+        <div class="hotel-name">{{ hotel.name }} {{ rating }}</div>
+        <div class="description">
+            <div class="brief-description">{{ hotel.brief_description }}</div>
+            <div class="hotel-features">
+                <span class="hotel-features-title">Features:</span>
+                <ul>
+                    {% for feature in features %}
+                        <li>{{ feature.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="long-description">{{ hotel.description }}</div>
+            <div>
+                <a href="{% url "hotels:hotel-rooms" hotel_id=hotel.id %}">View rooms</a>
+            </div>
+        </div>
+        <div class="comments">
+            <form action="{% url 'hotels:hotel-details' hotel_id=hotel.id %}" method="post">
+                {% csrf_token %}
+                Write your opinion about this hotel!
+                {{ comment_form.as_p }}
+                <input type="submit" value="Submit!"/>
+            </form>
+            {% if not comments %}
+                <div class="no-comments-message">There are no comments yet</div>
+            {% else %}
+                Other people opinions:
+                {% for comment in comments %}
+                    <div class="comment">
+                        <h4>{{ comment.name }}</h4>
+                        {{ comment.message }}
+                        <span class="stars">{{ comment.get_stars }}</span>
+                        <div>
+                            <a href="{% url "hotels:comment-delete" id=comment.id %}">Delete</a>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            {% endif %}
+    </div>
+{% endblock %}

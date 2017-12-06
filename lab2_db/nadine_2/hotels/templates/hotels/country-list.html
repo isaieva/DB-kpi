@@ -1,0 +1,23 @@
+{% extends 'hotels/structure.html' %}
+
+{% block title %}
+    Countries
+{% endblock %}
+
+{% block content %}
+    <div class="app">
+        <div class="app-right container">
+            {% for country in countries %}
+                <a class="box" href="{% url "hotels:country-details" country_name=country.name %}">
+                    <div class="box-name">{{ country.name }}</div>
+                    <div class="box-linesplit"></div>
+                    <div>{{ country.description }}</div>
+                </a>
+            {% endfor %}
+            <a href="{% url "hotels:country-add" %}" class="box box-add-container">
+                <i class="fa fa-plus-circle fa-5x" aria-hidden="true"></i>
+                <div class="box-add-text">Add country</div>
+            </a>
+        </div>
+    </div>
+{% endblock %}

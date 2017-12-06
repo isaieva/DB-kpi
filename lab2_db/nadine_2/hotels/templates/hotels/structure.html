@@ -1,0 +1,24 @@
+{% load static %}
+<html>
+<head>
+    <script src="https://use.fontawesome.com/40fbac21ac.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'hotels/reset.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'hotels/appearance.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'hotels/layout.css' %}"/>
+
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<nav>
+    <a href="{% url 'hotels:features' %}">Features</a>
+    <a href="{% url 'hotels:countries' %}">Countries</a>
+    <a href="{% url 'hotels:search' %}">Search</a>
+</nav>
+{% block content %}{% endblock %}
+</body>
+</html>

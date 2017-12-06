@@ -1,0 +1,31 @@
+{% extends 'hotels/structure.html' %}
+{% load my_filters %}
+
+{% block title %}
+    {{ country.name }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ country.name }}</h1>
+    <h3>{{ country.description }}</h3>
+    <a href="{% url 'hotels:country-edit' country_name=country.name %}">Edit</a>
+
+    <div class="container">
+        {% for hotel in hotels %}
+            <a class="box" href="{% url "hotels:hotel-details" hotel_id=hotel.id %}">
+                <div class="box-name">{{ hotel.name }}</div>
+                <div class="box-linesplit"></div>
+                <div>{{ hotel.brief_description }}</div>
+                <div class="box-filler"></div>
+                <div class="box-stars">
+                    {{ hotel.rating | to_stars }}
+                </div>
+            </a>
+
+        {% endfor %}
+        <a href="{% url 'hotels:hotel-add' %}" class="box box-add-container">
+            <i class="fa fa-plus-circle fa-5x" aria-hidden="true"></i>
+            <div class="box-add-text">Add hotel</div>
+        </a>
+    </div>
+{% endblock %}

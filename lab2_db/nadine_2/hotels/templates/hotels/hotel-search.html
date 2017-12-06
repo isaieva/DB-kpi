@@ -1,0 +1,66 @@
+{% extends 'hotels/structure.html' %}
+{% load my_filters %}
+
+{% block title %}
+    Search hotel
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <label>
+            Search:
+            <input type="text" name="fts">
+        </label><br>
+        <label>
+            Search phrase:
+            <input type="text" name="phrase"/>
+        </label><br>
+        <label>
+            Min price:
+            <input type="text" name="min-price">
+        </label>
+        <label>
+            Max price:
+            <input type="text" name="max-price">
+        </label><br>
+
+        <label>
+        Country:
+            <select name="country">
+                {% for country in countries %}
+                <option value="{{ country.name }}">{{ country.name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+
+        <ul>
+            {% for feature in features %}
+                <li><label>
+                    {{ feature.name }}
+                    {% if feature.active == 0 %}
+                        <input type="checkbox" name="features" value="{{ feature.name }}">
+                    {% else %}
+                        <input checked="checked" type="checkbox" name="features" value="{{ feature.name }}">
+                    {% endif %}
+                </label></li>
+            {% endfor %}
+        </ul>
+
+        <input type="submit" value="Submit!"/>
+    </form>
+
+    <div class="container">
+        {% for hotel in results %}
+            <a class="box" href="{% url "hotels:hotel-details" hotel_id=hotel.id %}">
+                <div class="box-name">{{ hotel.name }}</div>
+                <div class="box-linesplit"></div>
+                <div>{{ hotel.brief_description }}</div>
+                <div class="box-filler"></div>
+                <div class="box-stars">
+                    {{ hotel.rating | to_stars }}
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

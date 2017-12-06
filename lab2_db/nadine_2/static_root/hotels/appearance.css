@@ -1,0 +1,53 @@
+html{
+	color: #1d1d1d;
+	background-color: #EEEEEE;
+	line-height: 1.4;
+	font-family: 'Open Sans', Helvetica, sans-serif;
+	font-size: 16px;
+}
+
+.error-message{
+    color: red;
+}
+
+.stars{
+    font-size: 25px;
+}
+
+.container{
+	display: flex;
+	flex-flow: row;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
+
+.box:hover {
+	box-shadow: 0 0 13px 4px rgba(29, 29, 29, 0.20)
+}
+
+.box-name{
+    font-size: 20px;
+}
+
+.box:hover .box-name{
+	font-size: 27px;
+}
+
+.box-stars{
+	font-size: 25px;
+	text-align: center;
+}
+
+.box-add-container:hover{
+	border-color: #1d1d1d;
+    color: #EEEEEE;
+	background-color: #1d1d1d;
+}
+
+.box-add-text{
+    font-size: 25px;
+}
+
+.box:hover .box-add-text{
+	font-size: 30px;
+}

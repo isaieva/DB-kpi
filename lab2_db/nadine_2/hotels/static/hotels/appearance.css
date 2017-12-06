@@ -1,0 +1,91 @@
+html, body {
+    color: #1d1d1d;
+    background-color: #EEEEEE;
+    line-height: 1.4;
+    font-family: 'Open Sans', Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+.error-message {
+    color: red;
+}
+
+.stars {
+    font-size: 25px;
+}
+
+.box {
+    transition: box-shadow ease-in-out 0.3s, ease-in 0.3s;
+}
+
+.box:hover {
+    box-shadow: 0 0 13px 4px rgba(29, 29, 29, 0.20)
+}
+
+.box-name {
+    font-size: 20px;
+    transition: font-size 0.5s;
+}
+
+.box-linesplit {
+    transition: width 0.3s;
+}
+
+.box:hover .box-name {
+    font-size: 27px;
+}
+
+.box-stars {
+    font-size: 25px;
+    text-align: center;
+}
+
+.box-add-container:hover {
+    border-color: #1d1d1d;
+    color: #EEEEEE;
+    background-color: #1d1d1d;
+}
+
+.box-add-text {
+    font-size: 25px;
+    transition: font-size 0.3s;
+}
+
+.box:hover .box-add-text {
+    font-size: 30px;
+}
+
+.hotel-name {
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.brief-description {
+    font-size: 20px;
+    font-style: italic;
+}
+
+.hotel-features-title{
+    font-weight: 700;
+    font-size: 30px;
+
+}
+
+.hotel-features > ul > li {
+    list-style-type: disc;
+}
+
+.comment{
+    margin: 0.3em;
+    padding: 0.3em;
+    border: 1px solid white;
+}
+
+
+.room-table tbody tr{
+    background-color: #f8f8f8;
+}
+
+.room-table tbody tr:nth-child(2n){
+    background-color: #d7d7d7;
+}

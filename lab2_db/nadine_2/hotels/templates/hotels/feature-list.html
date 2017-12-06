@@ -1,0 +1,31 @@
+{% extends 'hotels/structure.html' %}
+
+{% block title %}
+    Features
+{% endblock %}
+
+{% block content %}
+    {% if error_message %}
+        <h3 class="error-message">{{ error_message }}</h3>
+    {% endif %}
+
+    {% if features %}
+        <ul>
+            {% for feature in features %}
+                <li>{{ feature.name }}
+                <a href="{% url 'hotels:feature-delete' feature_name=feature.name %}">Delete</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>There are no features yet</h3>
+    {% endif %}
+
+    <form method="post" action="{% url 'hotels:features' %}">
+        {% csrf_token %}
+
+        {{ form }}
+
+        <input type="submit" value="Add"/>
+    </form>
+{% endblock %}
